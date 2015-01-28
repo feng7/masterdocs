@@ -1,0 +1,48 @@
+literature:
+
+1.Dynamizing Static Algorithms, with Applications to Dynamic Trees and
+History Independenc
+
+Umut A.Acar ,Guy E.Blelloch ,Robert Harper ,Jorge L.Vittes, Shan Leung Maverick Woo 
+
+SODA '04 Proceedings of the fifteenth annual ACM-SIAM symposium on Discrete algorithms
+Pages 531-540 
+
+2.An Experimental Analysis of Change Propagation in Dynamic Trees
+
+UA Acar, GE Blelloch, JL Vittes - Computer Science Department, 2005 
+
+Workshop on Algorithms Engineering and Experiments (ALENEX)
+
+3.Fast Parallel and Adaptive Updates for Dual-Decomposition Solvers
+
+Ozgur Sumer, Umut A. Acar, Alexander T. Ihler, Ramgopal R. Mettu
+
+AAAI Publications, Twenty-Fifth AAAI Conference on Artificial Intelligence
+
+4.Dynamic Parallel Tree Contraction
+
+John H.Reif , Stephen R.Tate
+
+SPAA '94 Proceedings of the sixth annual ACM symposium on Parallel algorithms and architectures,Pages 114-121 
+
+5.Umut A. Acar, Arthur Chargueraud, and Mike Rainey. Data structures and algorithms for robust and fast parallel graph search. In Submitted for publication, 2014.  
+6.Umut A. Acar, Guy E. Blelloch, Jorge L.Vittes, Separating Structure from Data in Dynamic Trees.2003
+
+
+
+Some concepts about Dynamic Parallel Tree Contraction
+
+Parallel tree contraction was introduced by Miller and Reif in 1989 , parallel tree contraction is a useful and powerful tool for the design of a wide class of efficient graph algorithms.
+
+Parallel tree is a bottom-up technique for constructing parallel algorithms on trees. Contraction
+can be used to solve a wide variety of problems. 
+
+Dynamic tree contraction problems, are based on the prior parallel tree contraction algorithms, 
+requests for the tree may be dynamically change the tree or the value of the tree. 
+
+To solve dynamic tree contraction problems, using a dynamic binary tree with unbounded depth.
+the dynamic parallel tree contraction algorithm, which incrementally processes parallel requests to add or delete leaves of tree, modify labels of internal nodes or leaves of tree, and also incrementally processes parallel tree contraction queries that recompute values at speciﬁed nodes.
+
+In 2003, A new method called Rake & Compress was used to solve dynamic tree problems, and I will use RCtree to research the dynamic parallel tree contraction problems.
+To use this method ,we need to make R&C Tree from the original tree, Rake node was the subtree with a some node as the root in the original tree, Compress node was the subtree with a some path  as the root in the original tree.
