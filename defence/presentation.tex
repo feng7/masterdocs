@@ -6,7 +6,12 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{subfigure}
-\usepackage{biblatex}
+\usepackage[
+    backend=biber,
+    bibencoding=utf8,
+    autolang=other
+]{biblatex}
+\renewbibmacro{in:}{}
 \addbibresource{presentation.bib}
 \mode<presentation>
 {
@@ -16,7 +21,7 @@
   \setbeamersize{text margin left=0.4cm,sidebar width left=0cm}
 }
 
-\graphicspath{{picture/}, {template/}, {tests/}, {../../../../../files/}}
+\graphicspath{{picture/}, {template/}, {tests/}}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -40,8 +45,8 @@
 \newcommand\col[1]{{\color{olivegreen}{#1}}}
 
 \title{Разработка эффективной структуры данных, поддерживающей инкрементальные изменения, для параллельной обработки деревьев}
-\author[У Цзюньфэн]{Автор: У Цзюньфэн, Группа M4236\\Научный руководитель: Станкевич А.С.\\Консультант: Буздалов М.В}
-\institute[Университет ИТМО]{ Кафедра: Компьютерных Технологий \\Факультет: ИТиП \\\includegraphics[height=.3\textheight]{template/itmo_small_white_rus.jpg}}
+\author[У Цзюньфэн]{Автор: У Цзюньфэн, группа M4236\\Научный руководитель: Станкевич А.С.\\Консультант: Буздалов М.В}
+\institute[Университет ИТМО]{ Кафедра компьютерных технологий \\Факультет ИТиП \\\includegraphics[height=.3\textheight]{template/itmo_small_white_rus.jpg}}
 \date[20.06.2016]{20 июня 2016 года}
 
 \begin{document}
@@ -78,7 +83,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}[shrink]{Цель и Задачи}
+\begin{frame}[shrink]{Цель и задачи}
 \begin{itemize}
 \item Цель исследования
 \begin{itemize}
@@ -143,7 +148,7 @@
 	    \item Эффективно работает, только если число детей вершины ограничено константой
 	    \item Сложная реализация с разбором большого числа случаев
 	    \item Параллелизм $\to$ проблемы с памятью $\to$ $\Theta(n \log n)$ памяти в простой реализации
-	    \item Нормальных (переиспользуемых, контейнерных) реализаций пока нет
+	    \item Переиспользуемых реализаций пока нет
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -183,7 +188,7 @@
                   \\~~~~даны числа $x_{1}, x_{2}, ..., x_{n}$
                   \\~~~~вычислить $s_{1}=x_{1}, s_{2}=x_{1}+x_{2}, ..., s_{n}=x_{1}+x_{2}+...+x_{n}$
         \end{itemize}
-    \item Реализацииопераций
+    \item Реализации операций
         \begin{itemize}
             \item Последовательная (Sequential)
             \item Параллельная с использованием OpenMP
@@ -207,12 +212,12 @@
 	    \item Построение дерева-<<палки>> в десять этапов, каждый из которых состоит в присоединении 
 	$n / 10$ вершин
 	\end{enumerate}
-    \item Испытательная машина имеет 8 ядра процессора
-    \item Приводитсявремя работы на тесте 1,2,3,4 в секундах
+    \item Тестовый сервер: восемь ядер, Intel Xeon E5606, 2.13 ГГц
+    \item Следующие слайды: время работы на тестах в секундах
 \end{itemize}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием 1 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: одно ядро}
 
 \begin{table}[!ht]
 \centering
@@ -248,7 +253,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{table}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием 1 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: одно ядро}
 \begin{center}
 \begin{figure}
 \centering
@@ -260,7 +265,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{center}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием 2 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: два ядра}
 
 \begin{table}[!ht]
 \centering
@@ -297,7 +302,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{table}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием 2 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: два ядра}
 \begin{center}
 \begin{figure}
 \centering
@@ -308,7 +313,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{figure}
 \end{center}
 \end{frame}
-\begin{frame}[shrink]{Результаты экспериментов с использованием 4 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: четыре ядра}
 
 \begin{table}[!ht]
 \centering
@@ -344,7 +349,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{table}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием 4 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: четыре ядра}
 \begin{center}
 \begin{figure}
 \centering
@@ -356,7 +361,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{center}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием 8 процессора}
+\begin{frame}[shrink]{Результаты экспериментов: восемь ядер}
 
 \begin{table}[!ht]
 \centering
@@ -392,7 +397,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{table}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием OpenMP с использованием другого количества процессоров}
+\begin{frame}[shrink]{Сводные результаты экспериментов: OpenMP}
 \begin{center}
 \begin{figure}
 \centering
@@ -404,7 +409,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \end{center}
 \end{frame}
 
-\begin{frame}[shrink]{Результаты экспериментов с использованием PASL с использованием другого количества процессоров}
+\begin{frame}[shrink]{Сводные результаты экспериментов: PASL}
 \begin{center}
 \begin{figure}
 \centering
@@ -431,7 +436,7 @@ PASL	& $n=10000$ & $n=100000$ & $n=1000000$ & $n=3000000$ \\\hline
 \printbibliography 
 \end{itemize}
 \end{frame}
-\begin{frame}[shrink]{End}
+\begin{frame}[shrink]{~~~}
 \begin{center}
 \Huge Спасибо за внимание!
 \end{center}
